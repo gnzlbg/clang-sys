@@ -1,0 +1,5 @@
+var ALIASES = {};
+ALIASES['clang_sys'] = {};
+ALIASES['clang_sys'] = {};
+ALIASES['glob'] = {};
+ALIASES['libc'] = {};
