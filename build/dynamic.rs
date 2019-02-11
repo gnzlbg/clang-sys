@@ -155,6 +155,7 @@ fn search_libclang_directories(runtime: bool) -> Result<Vec<(PathBuf, String, Ve
     let mut valid = vec![];
     let mut invalid = vec![];
     for (directory, filename) in common::search_libclang_directories(&files, "LIBCLANG_PATH") {
+        eprintln!("directory: {:?}", directory);
         let path = directory.join(&filename);
         match validate_header(&path).and_then(|_| determine_version(&path)) {
             Ok(version) => valid.push((directory, filename, version)),

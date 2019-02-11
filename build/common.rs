@@ -127,8 +127,11 @@ pub fn search_libclang_directories(files: &[String], variable: &str) -> Vec<(Pat
     // Search the `bin` and `lib` directories in directory provided by `llvm-config --prefix`.
     if let Ok(output) = run_llvm_config(&["--prefix"]) {
         let directory = Path::new(output.lines().next().unwrap()).to_path_buf();
+        eprintln!("llvm-config dir: {}", directory.display());
         found.extend(search_directories(&directory.join("bin"), files));
         found.extend(search_directories(&directory.join("lib"), files));
+    } else {
+        eprintln!("llvm-config failed");
     }
 
     // Search the directories provided by the `LD_LIBRARY_PATH` environment variable.
