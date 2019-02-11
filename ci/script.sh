@@ -11,3 +11,5 @@ if [ "${CLANG_VERSION}" \< "clang_3_7" ]; then
 fi
 
 RUST_BACKTRACE=1 cargo test --verbose --features "$CLANG_VERSION assert-minimum runtime" -- --nocapture
+
+RUST_BACKTRACE=1 cargo test --manifest-path=clang-sys-test/Cargo.toml --verbose -- --nocapture

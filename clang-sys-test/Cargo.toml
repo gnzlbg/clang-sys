@@ -1,0 +1,17 @@
+[package]
+name = "clang-sys-test"
+version = "0.1.0"
+authors = ["gnzlbg <gonzalobg88@gmail.com>"]
+build = "build.rs"
+
+[dependencies]
+clang-sys = { path = "..", features = ["static"] }
+libc = "0.2"
+
+[build-dependencies]
+ctest = { git = "https://github.com/gnzlbg/ctest", branch = "const_name" }
+
+[[test]]
+name = "main"
+path = "test/main.rs"
+harness = false
