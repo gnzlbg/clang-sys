@@ -5,7 +5,7 @@ authors = ["gnzlbg <gonzalobg88@gmail.com>"]
 build = "build.rs"
 
 [dependencies]
-clang-sys = { path = "..", features = ["static"] }
+clang-sys = { path = ".." }
 libc = "0.2"
 
 [build-dependencies]

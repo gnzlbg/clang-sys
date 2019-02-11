@@ -1,26 +1,29 @@
 language: rust
 
-addons:
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-    packages:
-      - gcc-5
+matrix:
+  fast_finish: true
+  include:
+    - env: LLVM_VERSION=3.5 CLANG_VERSION=clang_3_5
+      os: linux
+      rust: stable
+      addons: &gcc
+        apt:
+          sources: [ "ubuntu-toolchain-r-test" ]
+          packages: [ "gcc-5" ]
 
-os:
-  - linux
-
-rust: stable
-
-env:
-  - LLVM_VERSION=3.5 CLANG_VERSION=clang_3_5
-  - LLVM_VERSION=7.0 CLANG_VERSION=clang_7_0
-
-cache:
-  directories:
-    - $HOME/.cargo
-    - $HOME/.llvm
+    - env: LLVM_VERSION=7.0 CLANG_VERSION=clang_7_0
+      os: linux
+      rust: stable
+      addons: *gcc
+    - env: LLVM_VERSION=7.0 CLANG_VERSION=clang_7_0
+      os: osx
+      rust: stable
+    - name: "Xcode10"
+      env: LLVM_VERSION=6.0 CLANG_VERSION=clang_6_0
+      os: osx
+      rust: stable
+      osx_image: xcode10
+      before_install: true
 
 before_install: . ./ci/before_install.sh
-
 script: . ./ci/script.sh

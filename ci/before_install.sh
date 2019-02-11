@@ -1,10 +1,6 @@
-set -e
+#!/usr/bin/env bash
+set -ex
 pushd ~
-
-# Workaround for Travis CI macOS bug (https://github.com/travis-ci/travis-ci/issues/6307)
-if [ "${TRAVIS_OS_NAME}" == "osx" ]; then
-    rvm get head || true
-fi
 
 function llvm_version_triple() {
     if [ "$1" == "3.5" ]; then
