@@ -2,6 +2,8 @@
 
 set -ex
 
+: "${VERSION?The VERSION environment variable must be set.}"
+
 llvm_version_triple() {
     if [ "$1" = "3.5" ]; then
         echo "3.5.2"
@@ -25,7 +27,7 @@ llvm_version_triple() {
 }
 
 llvm_download() {
-    LLVM_VERSION_TRIPLE=$(llvm_version_triple "${LLVM_VERSION}")
+    LLVM_VERSION_TRIPLE=$(llvm_version_triple "${VERSION}")
     export LLVM_VERSION_TRIPLE
     export LLVM=clang+llvm-${LLVM_VERSION_TRIPLE}-$1
     export LLVM_DIRECTORY="$HOME/.llvm/${LLVM}"

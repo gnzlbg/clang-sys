@@ -11,16 +11,16 @@ matrix:
           sources: [ "ubuntu-toolchain-r-test" ]
           packages: [ "gcc-5" ]
 
-    - env: LLVM_VERSION=7.0 CLANG_VERSION=clang_7_0
+    - env: VERSION=7.0
       os: linux
       addons: *gcc
-    - env: LLVM_VERSION=7.0 CLANG_VERSION=clang_7_0
+    - env: VERSION=7.0
       os: osx
     - name: "Xcode10"
-      env: LLVM_VERSION=6.0 CLANG_VERSION=clang_6_0
+      env: VERSION=6.0
       os: osx
       osx_image: xcode10
       before_install: true
 
 before_install: sh ci/before_install.sh
-script: sh ci/script.sh
+script: CLANG_VERSION=$VERSION sh ci/script.sh
