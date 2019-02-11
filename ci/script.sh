@@ -3,6 +3,9 @@
 set -ex
 export RUST_BACKTRACE=1
 
+command -v llvm-config
+llvm-config --prefix
+
 FEATURES=
 if [ "$CLANG_VERSION" != "" ]; then
     FEATURES="assert-minimum"

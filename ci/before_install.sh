@@ -43,6 +43,8 @@ llvm_download() {
     export LLVM_CONFIG_PATH="${LLVM_DIRECTORY}/bin/llvm-config"
 }
 
+# Put llvm-config in the path
+export PATH="${LLVM_DIRECTORY}/bin:$PATH"
 if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
     llvm_download x86_64-linux-gnu-ubuntu-14.04
     export LD_LIBRARY_PATH="${LLVM_DIRECTORY}/lib":$LD_LIBRARY_PATH
