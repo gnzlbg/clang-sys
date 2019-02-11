@@ -1,14 +1,14 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 set -ex
+export RUST_BACKTRACE=1
 
 FEATURES=
 if [ "$CLANG_VERSION" != "" ]; then
     FEATURES="assert-minimum"
 fi
 
-RUST_BACKTRACE=1 cargo test -vv --features "$CLANG_VERSION $FEATURES" -- --nocapture
-RUST_BACKTRACE=1 cargo test -vv --features "$CLANG_VERSION static $FEATURES" -- --nocapture
-RUST_BACKTRACE=1 cargo test -vv --features "$CLANG_VERSION runtime $FEATURES" -- --nocapture
-
-RUST_BACKTRACE=1 cargo test --manifest-path=clang-sys-test/Cargo.toml -vv -- --nocapture
+cargo test -vv --features "$CLANG_VERSION $FEATURES" -- --nocapture
+cargo test -vv --features "$CLANG_VERSION static $FEATURES" -- --nocapture
+cargo test -vv --features "$CLANG_VERSION runtime $FEATURES" -- --nocapture
+cargo test -vv --manifest-path=clang-sys-test/Cargo.toml -- --nocapture

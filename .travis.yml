@@ -25,5 +25,5 @@ matrix:
       osx_image: xcode10
       before_install: true
 
-before_install: . ./ci/before_install.sh
-script: . ./ci/script.sh
+before_install: sh ./ci/before_install.sh
+script: sh ./ci/script.sh
