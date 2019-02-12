@@ -23,4 +23,4 @@ matrix:
       before_install: true
 
 before_install: sh ci/before_install.sh
-script: CLANG_VERSION=$VERSION sh ci/script.sh
+script: CLANG_VERSION="clang-${VERSION}" sh ci/script.sh
